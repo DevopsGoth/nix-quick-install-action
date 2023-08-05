@@ -28,6 +28,7 @@ if [ -a /nix ]; then
   fi
 elif [[ "$sys" =~ .*-darwin ]]; then
   sudo $SHELL -euo pipefail << EOF
+  set -x
   echo nix >> /etc/synthetic.conf
   echo -e "run\\tprivate/var/run" >> /etc/synthetic.conf
   /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B &>/dev/null \
