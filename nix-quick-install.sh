@@ -37,10 +37,10 @@ elif [[ "$sys" =~ .*-darwin ]]; then
   diskutil apfs addVolume $apfsRoot APFS nix -mountpoint /nix
   mdutil -i off /nix
   chown $USER /nix
+EOF
   # this is just until I get the runners to have this by default
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew install zstd
-EOF
 else
   sudo install -d -o "$USER" /nix
   if [[ "$NIX_ON_TMPFS" == "true" || "$NIX_ON_TMPFS" == "True" || "$NIX_ON_TMPFS" == "TRUE" ]]; then
