@@ -27,8 +27,7 @@ if [ -a /nix ]; then
     rm -rf /nix/var/nix-quick-install-action
   fi
 elif [[ "$sys" =~ .*-darwin ]]; then
-  sudo $SHELL -euo pipefail << EOF
-  set -x
+  sudo $SHELL -euox pipefail << EOF
   echo nix >> /etc/synthetic.conf
   echo -e "run\\tprivate/var/run" >> /etc/synthetic.conf
   /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B &>/dev/null \
@@ -36,9 +35,9 @@ elif [[ "$sys" =~ .*-darwin ]]; then
     || echo "warning: failed to execute apfs.util"
   echo "crashing on the set?"
   diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]'
-  set apfsRoot=$(diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]')
+  set apfsRoot="$(diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]')"
   #echo "apfs root : $apfsRoot "
-  #diskutil apfs addVolume "$apfsRoot" nix -mountpoint /nix
+  #diskutil apfs addVolume $apfsRoot nix -mountpoint /nix
   diskutil apfs addVolume disk4 nix -mountpoint /nix
   mdutil -i off /nix
   chown $USER /nix
