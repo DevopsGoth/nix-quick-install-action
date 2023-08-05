@@ -37,6 +37,7 @@ elif [[ "$sys" =~ .*-darwin ]]; then
   diskutil apfs addVolume $apfsRoot APFS nix -mountpoint /nix
   mdutil -i off /nix
   chown $USER /nix
+  brew install zstd
 EOF
 else
   sudo install -d -o "$USER" /nix
