@@ -28,8 +28,7 @@ if [ -a /nix ]; then
   fi
 elif [[ "$sys" =~ .*-darwin ]]; then
   apfsRoot=$(diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]')
-  diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]'
-  sudo $SHELL -eou pipefail << EOF
+  sudo $SHELL -euo pipefail << EOF
   echo nix >> /etc/synthetic.conf
   echo -e "run\\tprivate/var/run" >> /etc/synthetic.conf
   /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B &>/dev/null \
