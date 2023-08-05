@@ -36,6 +36,7 @@ elif [[ "$sys" =~ .*-darwin ]]; then
   diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]'
   set apfsRoot=$(diskutil list | grep "APFS Container Scheme" | grep -oh 'disk[0-9]')
   echo "apfs root : $apfsRoot "
+  echo "no srsly where is my echos"
   diskutil apfs addVolume "$apfsRoot" nix -mountpoint /nix
   mdutil -i off /nix
   chown $USER /nix
