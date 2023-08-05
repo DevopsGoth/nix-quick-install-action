@@ -40,6 +40,8 @@ elif [[ "$sys" =~ .*-darwin ]]; then
 EOF
   # this is just until I get the runners to have this by default
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/runner/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
   brew install zstd
 else
   sudo install -d -o "$USER" /nix
