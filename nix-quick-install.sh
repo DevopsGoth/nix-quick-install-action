@@ -34,7 +34,7 @@ elif [[ "$sys" =~ .*-darwin ]]; then
   /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B &>/dev/null \
     || /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t &>/dev/null \
     || echo "warning: failed to execute apfs.util"
-  diskutil apfs addVolume $apfs APFS nix -mountpoint /nix
+  diskutil apfs addVolume $apfsRoot APFS nix -mountpoint /nix
   mdutil -i off /nix
   chown $USER /nix
 EOF
