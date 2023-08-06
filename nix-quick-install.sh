@@ -38,11 +38,6 @@ elif [[ "$sys" =~ .*-darwin ]]; then
   mdutil -i off /nix
   chown $USER /nix
 EOF
-  # this is just until I get the runners to have this by default
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/runner/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  brew install zstd
 else
   sudo install -d -o "$USER" /nix
   if [[ "$NIX_ON_TMPFS" == "true" || "$NIX_ON_TMPFS" == "True" || "$NIX_ON_TMPFS" == "TRUE" ]]; then
